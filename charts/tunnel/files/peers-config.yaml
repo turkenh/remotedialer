@@ -1,0 +1,10 @@
+peers:
+  - id: 0
+    url: ws://tunnel-server-0.tunnel-server:8080/connect
+    token: top-secret
+  - id: 1
+    url: ws://tunnel-server-1.tunnel-server:8080/connect
+    token: top-secret
+  - id: 2
+    url: ws://tunnel-server-2.tunnel-server:8080/connect
+    token: top-secret

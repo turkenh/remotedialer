@@ -1,14 +1,13 @@
-Reverse Tunneling Dialer
-========================
+Upbound Agent POC with Remotedialer
+===================================
 
-Client makes an outbound connection to a server.  The server can now do net.Dial from the
-server that will actually do a net.Dial on the client and pipe all bytes back and forth.
+# Steps to follow
 
-Fun times!
+On main cluster
+1. kubectl create ns tunnel-poc
+2. cd charts/tunnel
+3. helm upgrade --install tunnel-server . --set replicaCount=3
 
-Refer to [`server/`](server/) and [`client/`](client/) how to use.  Or don't.... This framework can hurt your head
-trying to conceptualize.
-
-See also:
-
-* [inlets.dev](https://inlets.dev) which uses the client and server components to form a tunnel for clients behind NAT or firewalls.
+On crossplane cluster (tested with hosted crossplane instance whose ingress removed)
+1. helm upgrade --install tunnel-client . --set client.id=53851874-df16-4a13-9119-f5c9657ebca2
+2. create netpol to allow traffic from tunnel client to gateway & graphql
